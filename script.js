@@ -60,3 +60,50 @@ function touchMove(e) {
 }
 
 // دالة إنهاء السحب
+function dragEnd() {
+  draggedPiece = null;
+}
+
+// دالة السحب فوق المنطقة
+function dragOver(e) {
+  e.preventDefault();
+}
+
+// دالة إسقاط القطعة
+function dropPiece() {
+  if (!this.hasChildNodes() && draggedPiece) {
+    this.appendChild(draggedPiece);
+    draggedPiece.style.position = 'relative'; // إعادة الوضع إلى النسبي بعد السحب
+    draggedPiece = null;
+  }
+}
+
+// تحقق من صحة تجميع البازل
+checkButton.addEventListener('click', () => {
+  let correct = true;
+
+  zones.forEach((zone, index) => {
+    const piece = zone.querySelector('img');
+    if (piece && piece.id !== `piece-${index + 1}`) {
+      correct = false;
+    }
+  });
+
+  if (correct) {
+    showPopup("You won! 🏆<br>Get ready for the 'Learn How to Learn' session!<br>Prepare for cinema surprises! 🎬");
+  } else {
+    showPopup("Try again! 😔");
+  }
+});
+
+// دالة إظهار النافذة المنبثقة
+function showPopup(message) {
+  popupMessage.innerHTML = message;
+  popup.classList.remove('hidden');
+}
+
+// إغلاق النافذة المنبثقة
+closePopup.addEventListener('click', () => {
+  popup.classList.add('hidden');
+});
+
