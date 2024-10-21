@@ -54,6 +54,11 @@ body {
   max-width: 100px;
   height: auto; /* Maintain aspect ratio */
   cursor: grab;
+  transition: transform 0.1s; /* Smooth transition */
+}
+
+.piece:active {
+  cursor: grabbing; /* Change cursor on active */
 }
 
 button {
