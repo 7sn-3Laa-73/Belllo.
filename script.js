@@ -21,8 +21,6 @@ pieces.forEach(piece => {
 zones.forEach(zone => {
   zone.addEventListener('dragover', dragOver);
   zone.addEventListener('drop', dropPiece);
-  zone.addEventListener('touchenter', touchEnter);
-  zone.addEventListener('touchleave', touchLeave);
 });
 
 // دالة بدء السحب
