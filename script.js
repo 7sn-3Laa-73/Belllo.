@@ -75,6 +75,15 @@ function dropPiece() {
     this.appendChild(draggedPiece);
     draggedPiece.style.position = 'relative'; // إعادة الوضع إلى النسبي بعد السحب
     draggedPiece = null;
+  } else if (this.hasChildNodes()) {
+    const currentPiece = this.querySelector('img');
+    if (currentPiece) {
+      // نقل الصورة الحالية إلى القطعة التي يتم سحبها
+      currentPiece.style.position = 'absolute'; // لجعلها قابلة للتحريك
+      currentPiece.style.zIndex = '1000';
+      document.body.appendChild(currentPiece);
+      draggedPiece = currentPiece; // تعيين القطعة الحالية كسحب
+    }
   }
 }
 
@@ -106,4 +115,3 @@ function showPopup(message) {
 closePopup.addEventListener('click', () => {
   popup.classList.add('hidden');
 });
-
